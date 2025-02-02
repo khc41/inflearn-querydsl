@@ -69,6 +69,11 @@
     - 이름이 달라도 생성자로 들어가므로 안맞춰줘도 됨
   - select 절에 subQuery를 사용하는 경우 ExpressionUtils.as()로 별칭 가능
 - 프로젝션과 결과 반환 - @QueryProjection
+  - DTO를 Q클래스로 생성해줌 
+  - Projections.constructor()와의 차이점 -> 이건 compile 오류를 못잡는다.
+  - 단점
+    1. QFile을 생성해줘야함.
+    2. DTO가 Querydsl 의존성을 가지게 됨
 - 동적 쿼리 - BooleanBuilder 사용
 - 동적 쿼리 - Where 다중 파라미터 사용
 - 수정, 삭제 벌크 연산
