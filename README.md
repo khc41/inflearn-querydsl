@@ -22,6 +22,10 @@
 - 시작 - JPQL vs Querydsl
   - JPQL은 런타임에 문법 에러 확인 가능, Querydsl은 컴파일 타임에 문법 에러 확인 가능
 - 기본 Q-Type 활용
+  - 같은 테이블을 조인하는 경우에만 alias 지정해서 사용
+    ```java
+    QMember m1 = new QMember("m1");
+    ```
 - 검색 조건 쿼리
 - 결과 조회
 - 정렬
