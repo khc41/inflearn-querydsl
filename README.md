@@ -27,6 +27,13 @@
     QMember m1 = new QMember("m1");
     ```
 - 검색 조건 쿼리
+  - .and() 생략가능
+    ```java
+    .where(
+        member.username.eq("member1"),
+        member.age.eq(10)
+    )
+    ```
 - 결과 조회
 - 정렬
 - 페이징
