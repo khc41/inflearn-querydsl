@@ -81,6 +81,8 @@
   - 다른 쿼리에서 재사용 가능 (isServiceable 등의 메소드)
   - null 체크만 주의해서 사용
 - 수정, 삭제 벌크 연산
+  - 디비에 직접 반영하므로 디비와 영속성 컨텍스트의 상태가 달라지게 됨
+    - em.flush(), em.clear() 로 해결 가능
 - SQL function 호출하기
 ---
 ### 섹션 6. 실무 활용 - 순수 JPA와 Querydsl
