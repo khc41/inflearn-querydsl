@@ -79,6 +79,7 @@
 - 동적 쿼리 - Where 다중 파라미터 사용
   - BooleanExpression 으로 조합 가능
   - 다른 쿼리에서 재사용 가능 (isServiceable 등의 메소드)
+  - null 체크만 주의해서 사용
 - 수정, 삭제 벌크 연산
 - SQL function 호출하기
 ---
