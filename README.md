@@ -84,6 +84,7 @@
   - 디비에 직접 반영하므로 디비와 영속성 컨텍스트의 상태가 달라지게 됨
     - em.flush(), em.clear() 로 해결 가능
 - SQL function 호출하기
+  - 표준 함수들은 querydsl이 상당부분 내장하고 있다.
 ---
 ### 섹션 6. 실무 활용 - 순수 JPA와 Querydsl
 - 순수 JPA 리포지토리와 Querydsl
