@@ -77,6 +77,8 @@
        - DTO는 controller, service, repository 레이어등 다양한 곳에서 사용되므로 사용을 고려해봐야함.
 - 동적 쿼리 - BooleanBuilder 사용
 - 동적 쿼리 - Where 다중 파라미터 사용
+  - BooleanExpression 으로 조합 가능
+  - 다른 쿼리에서 재사용 가능 (isServiceable 등의 메소드)
 - 수정, 삭제 벌크 연산
 - SQL function 호출하기
 ---
