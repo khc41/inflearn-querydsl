@@ -61,6 +61,13 @@
   - tuple은 querydsl 패키지 안에 있으므로 리포지토리 계층을 넘어서 서비스 계층까지 가져가는 것은 좋은 설계가 아님
     - 하위 기술을 핵심 로직에서 알 필요 없으므로
 - 프로젝션과 결과 반환 - DTO 조회
+  - Projections.beans() -> setter로 값 삽입
+    - 이름이 다르면 .as() 등을 사용해서 맞춰줘야함
+  - Projections.fields() -> 필드에 직접 삽입
+    - 이름이 다르면 .as() 등을 사용해서 맞춰줘야함
+  - Projections.constructor() -> 생성자로 값 삽입
+    - 이름이 달라도 생성자로 들어가므로 안맞춰줘도 됨
+  - select 절에 subQuery를 사용하는 경우 ExpressionUtils.as()로 별칭 가능
 - 프로젝션과 결과 반환 - @QueryProjection
 - 동적 쿼리 - BooleanBuilder 사용
 - 동적 쿼리 - Where 다중 파라미터 사용
