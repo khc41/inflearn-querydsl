@@ -74,6 +74,7 @@
   - 단점
     1. QFile을 생성해줘야함.
     2. DTO가 Querydsl 의존성을 가지게 됨
+       - DTO는 controller, service, repository 레이어등 다양한 곳에서 사용되므로 사용을 고려해봐야함.
 - 동적 쿼리 - BooleanBuilder 사용
 - 동적 쿼리 - Where 다중 파라미터 사용
 - 수정, 삭제 벌크 연산

@@ -1,5 +1,6 @@
 package study.querydsl;
 
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Projections;
@@ -374,7 +375,7 @@ public class QuerydslBasicTest {
     }
 
     @Test
-    public void selectSubQuery(){
+    public void selectSubQuery() {
 
         QMember memberSub = new QMember("memberSub");
 
@@ -391,7 +392,7 @@ public class QuerydslBasicTest {
     }
 
     @Test
-    public void basicCase(){
+    public void basicCase() {
         List<String> result = queryFactory
                 .select(member.age
                         .when(10).then("열살")
@@ -406,7 +407,7 @@ public class QuerydslBasicTest {
     }
 
     @Test
-    public void complexCase(){
+    public void complexCase() {
         List<String> result = queryFactory
                 .select(new CaseBuilder()
                         .when(member.age.between(0, 20)).then("0~20살")
@@ -421,7 +422,7 @@ public class QuerydslBasicTest {
     }
 
     @Test
-    public void constant(){
+    public void constant() {
         List<Tuple> result = queryFactory
                 .select(member.username, Expressions.constant("A"))
                 .from(member)
@@ -433,7 +434,7 @@ public class QuerydslBasicTest {
     }
 
     @Test
-    public void concat(){
+    public void concat() {
 
         //{username}_{age}
         List<String> result = queryFactory
@@ -448,7 +449,7 @@ public class QuerydslBasicTest {
     }
 
     @Test
-    public void simpleProjection(){
+    public void simpleProjection() {
         List<String> result = queryFactory
                 .select(member.username)
                 .from(member)
@@ -460,7 +461,7 @@ public class QuerydslBasicTest {
     }
 
     @Test
-    public void tupleProjection(){
+    public void tupleProjection() {
         List<Tuple> result = queryFactory
                 .select(member.username, member.age)
                 .from(member)
@@ -475,7 +476,7 @@ public class QuerydslBasicTest {
     }
 
     @Test
-    public void findDtoByJPQL(){
+    public void findDtoByJPQL() {
         List<MemberDto> result = em.createQuery("select new study.querydsl.dto.MemberDto(m.username, m.age) from Member m", MemberDto.class)
                 .getResultList();
 
@@ -485,7 +486,7 @@ public class QuerydslBasicTest {
     }
 
     @Test
-    public void findDtoBySetter(){
+    public void findDtoBySetter() {
         List<MemberDto> result = queryFactory
                 .select(Projections.bean(MemberDto.class,
                         member.username,
@@ -498,7 +499,7 @@ public class QuerydslBasicTest {
     }
 
     @Test
-    public void findDtoByField(){
+    public void findDtoByField() {
         List<MemberDto> result = queryFactory
                 .select(Projections.fields(MemberDto.class,
                         member.username,
@@ -511,7 +512,7 @@ public class QuerydslBasicTest {
     }
 
     @Test
-    public void findUserDto(){
+    public void findUserDto() {
         QMember memberSub = new QMember("memberSub");
 
         List<UserDto> result = queryFactory
@@ -519,8 +520,8 @@ public class QuerydslBasicTest {
                         member.username.as("name"),
 
                         ExpressionUtils.as(JPAExpressions
-                                        .select(memberSub.age.max())
-                                        .from(memberSub), "age")
+                                .select(memberSub.age.max())
+                                .from(memberSub), "age")
                 ))
                 .from(member)
                 .fetch();
@@ -530,7 +531,7 @@ public class QuerydslBasicTest {
     }
 
     @Test
-    public void findDtoByConstructor(){
+    public void findDtoByConstructor() {
         List<UserDto> result = queryFactory
                 .select(Projections.constructor(UserDto.class,
                         member.username,
@@ -543,7 +544,7 @@ public class QuerydslBasicTest {
     }
 
     @Test
-    public void findDtoByQueryProjection(){
+    public void findDtoByQueryProjection() {
         List<MemberDto> result = queryFactory
                 .select(new QMemberDto(member.username, member.age))
                 .from(member)
@@ -552,5 +553,31 @@ public class QuerydslBasicTest {
         for (MemberDto memberDto : result) {
             System.out.println("memberDto = " + memberDto);
         }
+    }
+
+    @Test
+    public void dynamicQuery_BooleanBuilder() {
+        String usernameParam = "member1";
+        Integer ageParam = null;
+
+        List<Member> result = searchMember1(usernameParam, ageParam);
+        assertThat(result).hasSize(1);
+    }
+
+    private List<Member> searchMember1(String usernameCond, Integer ageCond) {
+
+        BooleanBuilder builder = new BooleanBuilder();
+        if (usernameCond != null) {
+            builder.and(member.username.eq(usernameCond));
+        }
+
+        if (ageCond != null) {
+            builder.and(member.age.eq(ageCond));
+        }
+
+        return queryFactory
+                .selectFrom(member)
+                .where(builder)
+                .fetch();
     }
 }
