@@ -88,6 +88,14 @@
 ---
 ### 섹션 6. 실무 활용 - 순수 JPA와 Querydsl
 - 순수 JPA 리포지토리와 Querydsl
+  - ```java
+      @Bean
+      JPAQueryFactory jpaQueryFactory(EntityManager em) {
+          return new JPAQueryFactory(em);
+      }
+    ```
+    JPAQueryFactory를 주입받으면 테스트할 때 불편하다는 단점이 있음
+  - JPAQueryFactory와 EntityManager는 멀티스레드 환경에서 동시성 문제를 걱정하지 않아도 된다.
 - 동적 쿼리와 성능 최적화 조회 - Builder 사용
 - 동적 쿼리와 성능 최적화 조회 - Where절 파라미터 사용
 - 조회 API 컨트롤러 개발
