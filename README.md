@@ -101,6 +101,13 @@
     - 데이터가 많이 쌓이면 조건절 없이 가져오므로
 - 동적 쿼리와 성능 최적화 조회 - Where절 파라미터 사용
 - 조회 API 컨트롤러 개발
+  - ```java
+    @GetMapping("/v1/members")
+        public List<MemberTeamDto> searchMemberV1(MemberSearchCondition condition) {
+        return memberJpaRepository.search(condition);
+    }
+    ```
+    컨트롤러에서 GET일 경우, 쿼리 파라미터를 클래스로 받으면 자동으로 매핑된다.
 ---
 ### 섹션 7. 실무 활용 - 스프링 데이터 JPA와 Querydsl
 - 스프링 데이터 JPA 리포지토리로 변경
