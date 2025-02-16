@@ -135,6 +135,9 @@
     return PageableExecutionUtils.getPage(content, pageable, countQuery::fetchOne);
     ```
 - 스프링 데이터 페이징 활용3 - 컨트롤러 개발
+  - Pageable의 Sort는 루트 엔티티 범위를 넘어가는 (Join 된 엔티티) 동적 정렬 기능을 사용하기 어려움
+  - 그러한 경우엔 스프링 데이터 페이징이 제공하는 Sort를 사용하기 보다는 파라미터를 받아서 직접 처리하는 것을 권장 
+  
 ---
 ### 섹션 8. 스프링 데이터 JPA가 제공하는 Querydsl 기능
 - 인터페이스 지원 - QuerydslPredicateExecutor
