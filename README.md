@@ -151,4 +151,6 @@
   - 조건을 커스텀하는 기능이 복잡하고 명시적이지 않다.
   - 컨트롤러가 Querydsl에 의존
 - 리포지토리 지원 - QuerydslRepositorySupport
+  - 스프링 데이터가 제공하는 페이징을 Querydsl로 편리하게 변환 (단 Sort는 안됨)
+  - select로 시작 불가
 - Querydsl 지원 클래스 직접 만들기
