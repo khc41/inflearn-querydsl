@@ -141,6 +141,11 @@
 ---
 ### 섹션 8. 스프링 데이터 JPA가 제공하는 Querydsl 기능
 - 인터페이스 지원 - QuerydslPredicateExecutor
+  - 실무에서 사용할 수 있을지 없을지를 판단하는 기능 중 중요한 부분이 join
+  - 한계점
+    - left join이 불가능하다.
+    - 서비스 클래스가 Querydsl이라는 구현 기술에 의존해야한다.
 - Querydsl Web 지원
+  - 
 - 리포지토리 지원 - QuerydslRepositorySupport
 - Querydsl 지원 클래스 직접 만들기
