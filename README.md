@@ -146,6 +146,9 @@
     - left join이 불가능하다.
     - 서비스 클래스가 Querydsl이라는 구현 기술에 의존해야한다.
 - Querydsl Web 지원
-  - 
+  - left join이 어렵다.
+  - 간단한 조건절만 지원
+  - 조건을 커스텀하는 기능이 복잡하고 명시적이지 않다.
+  - 컨트롤러가 Querydsl에 의존
 - 리포지토리 지원 - QuerydslRepositorySupport
 - Querydsl 지원 클래스 직접 만들기
