@@ -127,6 +127,13 @@
         .fetchOne();
     ```
 - 스프링 데이터 페이징 활용2 - CountQuery 최적화
+  - 스프링 데이터 라이브러리가 제공
+  - count 쿼리가 생략 가능할 경우 생략해서 처리
+    - 페이지 시작이면서 컨텐츠 사이즈가 페이지 사이즈보다 작을 때
+    - 마지막 페이지 일 때 (offset + 컨텐츠 사이즈를 더해서 전체 사이즈 구함)
+  - ```java
+    return PageableExecutionUtils.getPage(content, pageable, countQuery::fetchOne);
+    ```
 - 스프링 데이터 페이징 활용3 - 컨트롤러 개발
 ---
 ### 섹션 8. 스프링 데이터 JPA가 제공하는 Querydsl 기능
