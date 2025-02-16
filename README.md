@@ -112,6 +112,10 @@
 ### 섹션 7. 실무 활용 - 스프링 데이터 JPA와 Querydsl
 - 스프링 데이터 JPA 리포지토리로 변경
 - 사용자 정의 리포지토리
+  - Spring Data Jpa와 Querydsl을 같이 사용하는 Repository
+  - 구현체의 이름을 Spring Data Jpa의 repository의 이름과 맞추고 뒤에 Impl을 붙여주면 된다.
+  - API나 특정 화면에 특화된 기능이면 별도의 QueryRepository라는 클래스 생성 후 분리해주는 게 좋다.
+    - 엔티티 검색 등 핵심 비즈니스 로직은 Custom Repository에 넣고 종속되어 있는 것은 조회용 Repository로 분리 
 - 스프링 데이터 페이징 활용1 - Querydsl 페이징 연동
 - 스프링 데이터 페이징 활용2 - CountQuery 최적화
 - 스프링 데이터 페이징 활용3 - 컨트롤러 개발
