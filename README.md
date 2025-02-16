@@ -117,6 +117,15 @@
   - API나 특정 화면에 특화된 기능이면 별도의 QueryRepository라는 클래스 생성 후 분리해주는 게 좋다.
     - 엔티티 검색 등 핵심 비즈니스 로직은 Custom Repository에 넣고 종속되어 있는 것은 조회용 Repository로 분리 
 - 스프링 데이터 페이징 활용1 - Querydsl 페이징 연동
+  - 전체 카운트를 쿼리하는 것을 최적화할 수 있음 (불필요한 join 제거 등)
+  - fetchResults(), fetchCount()는 성능 이슈와 쿼리 최적화를 위해 제거되고, total count를 구할 때 다음과 같은 쿼리 사용
+  - ```java
+    long total = queryFactory
+        .select(member.count())
+        .from(member)
+        .where(member.status.eq(ACTIVE))
+        .fetchOne();
+    ```
 - 스프링 데이터 페이징 활용2 - CountQuery 최적화
 - 스프링 데이터 페이징 활용3 - 컨트롤러 개발
 ---
